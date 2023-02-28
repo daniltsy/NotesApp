@@ -4,15 +4,8 @@
       <section>
         <div class="container">
           <h1>{{ title }}</h1>
-          <div class="message" v-if="message">
-            <p>{{ message }}</p>
-          </div>
-          <div class="new-note">
-            <input v-model="note.title" type="text" />
-            <textarea v-model="note.descr"></textarea>
-            <button class="btn" @click="addNote">New note</button>
-          </div>
-
+          <message v-if="message" :message="message"></message>
+          <new-note :note="note" @addNote="addNote"></new-note>
           <div class="notes">
             <div class="note" v-for="(note, index) in notes" :key="index">
               <div class="note-header">
@@ -32,9 +25,11 @@
 
 <script>
 import message from "@/components/Message"
+import newNote from "@/components/NewNote"
 export default {
   components: {
     message,
+    newNote,
   },
   name: "App",
   data() {
