@@ -6,17 +6,7 @@
           <h1>{{ title }}</h1>
           <message v-if="message" :message="message"></message>
           <new-note :note="note" @addNote="addNote"></new-note>
-          <div class="notes">
-            <div class="note" v-for="(note, index) in notes" :key="index">
-              <div class="note-header">
-                <p>{{ note.title }}</p>
-              </div>
-              <div class="note-body">
-                <p>{{ note.descr }}</p>
-                <span> {{ note.date }}</span>
-              </div>
-            </div>
-          </div>
+          <notes :notes="notes"></notes>
         </div>
       </section>
     </div>
@@ -25,10 +15,12 @@
 
 <script>
 import message from "@/components/Message"
+import notes from "@/components/Notes"
 import newNote from "@/components/NewNote"
 export default {
   components: {
     message,
+    notes,
     newNote,
   },
   name: "App",
