@@ -6,7 +6,7 @@
       v-for="(note, index) in notes"
       :key="index"
     >
-      <div class="note-header" :class="{ full: !grid }">
+      <div class="note-header" :class="[{ full: !grid }, getClass(note)]">
         <p>{{ note.title }}</p>
         <p style="cursor: pointer" @click="removeNote(index)">x</p>
       </div>
@@ -34,6 +34,11 @@ export default {
   methods: {
     removeNote(index) {
       this.notes.splice(index, 1)
+    },
+    getClass(note) {
+      if (note.priority === "Very Important") return "red"
+      else if (note.priority === "Important") return "orange"
+      else return "green"
     },
   },
 }
@@ -91,6 +96,21 @@ export default {
       &:last-child {
         margin-right: 0;
       }
+    }
+  }
+  &.red {
+    p {
+      color: red;
+    }
+  }
+  &.orange {
+    p {
+      color: orange;
+    }
+  }
+  &.green {
+    p {
+      color: green;
     }
   }
 }
